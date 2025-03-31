@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+        
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            background-color: black;
+            color: white;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+        }
+        #image-container img {
+            width: 300px;
+            height: 300px;
+            margin-top: 20px;
+        }
+        h1 {
+            font-family: 'UnifrakturCook', cursive;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Do You Love Me joon? </h1>
+    <div id="image-container">
+        <img id="displayed-image" src="sally-face.gif" alt="Sally Face">
+    </div>
+    <div class="button-container" id="button-container">
+        <button class="btn yes" id="yesButton" onclick="handleYes()">Yes</button>
+        <button class="btn no" id="noButton" onclick="handleNo()">No</button>
+    </div>
+    
+    <script>
+        let noClickCount = 0;
+        let yesClickCount = 0;
+
+        function handleYes() {
+            yesClickCount++;
+            let title = document.getElementById("title");
+            let yesButton = document.getElementById("yesButton");
+            let noButton = document.getElementById("noButton");
+            let image = document.getElementById("displayed-image");
+
+            if (yesClickCount === 1) {
+                title.innerText = "Are you sure? ";
+                image.src = "2-d-thinking.gif";
+                yesButton.innerText = "I'm sure";
+                noButton.innerText = "I'm not sure";
+            } else if (yesClickCount === 2) {
+                title.innerText = "I love u too joon. ";
+                image.src = "L-cute.gif";
+                document.getElementById("button-container").innerHTML = "";
+            }
+        }
+        
+        function handleNo() {
+            noClickCount++;
+            let title = document.getElementById("title");
+            let yesButton = document.getElementById("yesButton");
+            let noButton = document.getElementById("noButton");
+            let image = document.getElementById("displayed-image");
+            
+            if (noClickCount === 1) {
+                title.innerText = "Why not ml? ";
+                image.src = "L-eat.gif";
+                yesButton.innerText = "I do";
+                noButton.innerText = "I just don't";
+            } else if (noClickCount === 2) {
+                title.innerText = "Like you have a choice.";
+                image.src = "light-mad.gif";
+                noButton.remove();
+            }
+        }
+        
+        function handleNotSure() {
+            let title = document.getElementById("title");
+            let image = document.getElementById("displayed-image");
+            let buttonContainer = document.getElementById("button-container");
+            
+            title.innerText = "Like you have a choice.";
+            image.src = "light-mad.gif";
+            buttonContainer.innerHTML = '<button class="btn yes" onclick="handleFinalYes()">I do</button>';
+        }
+    </script>
+</body>
+</html>
